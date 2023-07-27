@@ -16,6 +16,7 @@
   *
   ******************************************************************************
   */
+#include "wapper.hpp"
 /* USER CODE END Header */
 /* Includes ------------------------------------------------------------------*/
 #include "can.h"
@@ -23,16 +24,16 @@
 /* USER CODE BEGIN 0 */
 void can_setup(){
 	CAN_FilterTypeDef filter;
-	filter.FilterIdHigh         = 0;                        // フィルターID(上�?16ビッ?��?)
-	filter.FilterIdLow          = 0;                        // フィルターID(下�?16ビッ?��?)
-	filter.FilterMaskIdHigh     = 0;                        // フィルターマスク(上�?16ビッ?��?)
-	filter.FilterMaskIdLow      = 0;                        // フィルターマスク(下�?16ビッ?��?)
+	filter.FilterIdHigh         = 0;                        // フィルターID(上�?16ビッ?��?)
+	filter.FilterIdLow          = 0;                        // フィルターID(下�?16ビッ?��?)
+	filter.FilterMaskIdHigh     = 0;                        // フィルターマスク(上�?16ビッ?��?)
+	filter.FilterMaskIdLow      = 0;                        // フィルターマスク(下�?16ビッ?��?)
 	filter.FilterScale          = CAN_FILTERSCALE_32BIT;    // フィルタースケール
 	filter.FilterFIFOAssignment = CAN_FILTER_FIFO0;         // フィルターに割り当てるFIFO
 	filter.FilterBank           = 0;                        // フィルターバンクNo
-	filter.FilterMode           = CAN_FILTERMODE_IDMASK;    // フィルターモー?��?
+	filter.FilterMode           = CAN_FILTERMODE_IDMASK;    // フィルターモー?��?
 	filter.SlaveStartFilterBank = 14;                       // スレーブCANの開始フィルターバンクNo
-	filter.FilterActivation     = ENABLE;                   // フィルター無効??��?��有効
+	filter.FilterActivation     = ENABLE;                   // フィルター無効??��?��有効
 
 	  if (HAL_CAN_ConfigFilter(&hcan, &filter) != HAL_OK)
 	  {
@@ -41,7 +42,7 @@ void can_setup(){
 
 	  HAL_CAN_Start(&hcan);
 
-	  // 割り込み処�?の開�?
+	  // 割り込み処�?の開�?
 	  if (HAL_CAN_ActivateNotification(&hcan, CAN_IT_RX_FIFO0_MSG_PENDING) != HAL_OK)
 	  {
 	    Error_Handler();
